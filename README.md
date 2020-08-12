@@ -7,4 +7,5 @@ Technical Challenge from TigerSpike
 - Used Firestore to store user infomation.
 - Used Auth to implement basic signup/login function.
 12/08/2020 21:16 Check out.
+
 Duration: 111 mins.
