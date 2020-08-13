@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -118,13 +119,72 @@
                                     <outlet property="delegate" destination="W5y-nh-x6o" id="yAq-z4-4cy"/>
                                 </connections>
                             </mapView>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKe-Ob-cQB">
+                                <rect key="frame" x="166" y="802" width="228" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VuT-Bi-vZo">
+                                        <rect key="frame" x="16" y="0.0" width="196" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wO-ol-44r">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="F5K-K6-yAb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="plus.circle.fill" catalog="system"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ3-6T-q6H">
+                                                <rect key="frame" x="68" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="JUq-zu-6CE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="person.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="b4x-Uw-F4c" kind="presentation" modalPresentationStyle="fullScreen" id="QDX-oU-nac"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAM-TY-vIX">
+                                                <rect key="frame" x="136" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="RlL-Vh-tNb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="person.2.fill" catalog="system"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="V0L-1r-9bY"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VuT-Bi-vZo" secondAttribute="trailing" constant="16" id="Lge-vs-Ip9"/>
+                                    <constraint firstAttribute="bottom" secondItem="VuT-Bi-vZo" secondAttribute="bottom" id="UHD-g4-Lc4"/>
+                                    <constraint firstItem="VuT-Bi-vZo" firstAttribute="top" secondItem="wKe-Ob-cQB" secondAttribute="top" id="dYv-TU-N2D"/>
+                                    <constraint firstItem="VuT-Bi-vZo" firstAttribute="leading" secondItem="wKe-Ob-cQB" secondAttribute="leading" constant="16" id="inp-Jp-vaS"/>
+                                    <constraint firstAttribute="height" constant="60" id="j52-H1-pPk"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="h5A-n6-Utg" firstAttribute="bottom" secondItem="wKe-Ob-cQB" secondAttribute="bottom" id="19k-06-HOH"/>
                             <constraint firstItem="gOE-9c-VUz" firstAttribute="leading" secondItem="h5A-n6-Utg" secondAttribute="leading" id="HxH-DQ-f8B"/>
-                            <constraint firstAttribute="bottom" secondItem="gOE-9c-VUz" secondAttribute="bottom" id="X0T-1k-Pik"/>
+                            <constraint firstItem="gOE-9c-VUz" firstAttribute="top" secondItem="RMO-tu-bXC" secondAttribute="top" id="Jhw-bW-qCG"/>
+                            <constraint firstAttribute="bottom" secondItem="gOE-9c-VUz" secondAttribute="bottom" id="Rti-uq-OBu"/>
+                            <constraint firstItem="h5A-n6-Utg" firstAttribute="trailing" secondItem="wKe-Ob-cQB" secondAttribute="trailing" constant="20" id="lrE-ya-GjU"/>
                             <constraint firstItem="gOE-9c-VUz" firstAttribute="trailing" secondItem="h5A-n6-Utg" secondAttribute="trailing" id="mWk-e7-qhX"/>
-                            <constraint firstItem="gOE-9c-VUz" firstAttribute="top" secondItem="RMO-tu-bXC" secondAttribute="top" id="uvg-G5-fPK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h5A-n6-Utg"/>
                     </view>
@@ -134,7 +194,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4k-q0-eZo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344.9275362318842" y="513.61607142857144"/>
+            <point key="canvasLocation" x="1326" y="453"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="58n-UV-T2F">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="b4x-Uw-F4c" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fQM-Bw-bXm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1291" y="1094"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zDu-FV-ZFg">
@@ -324,4 +392,9 @@
             <point key="canvasLocation" x="132" y="883"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
 </document>

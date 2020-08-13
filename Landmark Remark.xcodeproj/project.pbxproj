@@ -15,6 +15,9 @@
 		E9672D7724E3DDDE009C17BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9672D7524E3DDDE009C17BA /* LaunchScreen.storyboard */; };
 		E9672D8224E3DDDE009C17BA /* Landmark_RemarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9672D8124E3DDDE009C17BA /* Landmark_RemarkTests.swift */; };
 		E9672D8D24E3E99B009C17BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9672D8C24E3E99B009C17BA /* GoogleService-Info.plist */; };
+		E9D8B8EB24E4F09B006E18B0 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */; };
+		E9D8B8EE24E4F6FB006E18B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8B8ED24E4F6FB006E18B0 /* ProfileViewController.swift */; };
+		E9D8B8F024E4F70F006E18B0 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8B8EF24E4F70F006E18B0 /* CommunityViewController.swift */; };
 		E9F51C1224E40841006D3D7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F51C1124E40841006D3D7E /* LoginViewController.swift */; };
 		E9F51C1424E40850006D3D7E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F51C1324E40850006D3D7E /* SignUpViewController.swift */; };
 		E9F51C1624E40CDC006D3D7E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F51C1524E40CDC006D3D7E /* InitialViewController.swift */; };
@@ -50,6 +53,10 @@
 		E9672D8124E3DDDE009C17BA /* Landmark_RemarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark_RemarkTests.swift; sourceTree = "<group>"; };
 		E9672D8324E3DDDF009C17BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9672D8C24E3E99B009C17BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		E9D8B8EC24E4F0AF006E18B0 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Community.storyboard; path = "/Users/yulia_heee/Documents/Landmark_Remark/Landmark Remark/View/Community.storyboard"; sourceTree = "<absolute>"; };
+		E9D8B8ED24E4F6FB006E18B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E9D8B8EF24E4F70F006E18B0 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		E9F51C1124E40841006D3D7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E9F51C1324E40850006D3D7E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E9F51C1524E40CDC006D3D7E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +102,6 @@
 				47A7CDD3012C0F3B000FD824 /* Pods-Landmark RemarkTests.debug.xcconfig */,
 				5DC7B7E41E8E986BD66ADAB1 /* Pods-Landmark RemarkTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,14 +128,11 @@
 		E9672D6924E3DDDD009C17BA /* Landmark Remark */ = {
 			isa = PBXGroup;
 			children = (
+				E9D8B8E924E4F07F006E18B0 /* View */,
 				E9F51C1924E412F7006D3D7E /* Utilities */,
 				E9F51C0924E4005C006D3D7E /* System */,
-				E9F51C0824E40017006D3D7E /* View */,
 				E9F51C0724E40007006D3D7E /* Controller */,
-				E9F51C0624E3FFFE006D3D7E /* Model */,
 				E9672D7824E3DDDE009C17BA /* Info.plist */,
-				E9672D7024E3DDDD009C17BA /* Main.storyboard */,
-				E9672D7524E3DDDE009C17BA /* LaunchScreen.storyboard */,
 				E9672D7324E3DDDE009C17BA /* Assets.xcassets */,
 			);
 			path = "Landmark Remark";
@@ -144,11 +147,15 @@
 			path = "Landmark RemarkTests";
 			sourceTree = "<group>";
 		};
-		E9F51C0624E3FFFE006D3D7E /* Model */ = {
+		E9D8B8E924E4F07F006E18B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */,
+				E9D8B8EC24E4F0AF006E18B0 /* Community.storyboard */,
+				E9672D7524E3DDDE009C17BA /* LaunchScreen.storyboard */,
+				E9672D7024E3DDDD009C17BA /* Main.storyboard */,
 			);
-			path = Model;
+			path = View;
 			sourceTree = "<group>";
 		};
 		E9F51C0724E40007006D3D7E /* Controller */ = {
@@ -158,15 +165,10 @@
 				E9F51C1324E40850006D3D7E /* SignUpViewController.swift */,
 				E9F51C1524E40CDC006D3D7E /* InitialViewController.swift */,
 				E9F51C1724E40CEC006D3D7E /* HomeViewController.swift */,
+				E9D8B8ED24E4F6FB006E18B0 /* ProfileViewController.swift */,
+				E9D8B8EF24E4F70F006E18B0 /* CommunityViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		E9F51C0824E40017006D3D7E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E9F51C0924E4005C006D3D7E /* System */ = {
@@ -273,6 +275,7 @@
 			files = (
 				E9672D7724E3DDDE009C17BA /* LaunchScreen.storyboard in Resources */,
 				E9672D8D24E3E99B009C17BA /* GoogleService-Info.plist in Resources */,
+				E9D8B8EB24E4F09B006E18B0 /* Profile.storyboard in Resources */,
 				E9672D7424E3DDDE009C17BA /* Assets.xcassets in Resources */,
 				E9672D7224E3DDDD009C17BA /* Main.storyboard in Resources */,
 			);
@@ -358,10 +361,12 @@
 			files = (
 				E9F51C1B24E41332006D3D7E /* FormValidation.swift in Sources */,
 				E9F51C1824E40CEC006D3D7E /* HomeViewController.swift in Sources */,
+				E9D8B8F024E4F70F006E18B0 /* CommunityViewController.swift in Sources */,
 				E9F51C1424E40850006D3D7E /* SignUpViewController.swift in Sources */,
 				E9F51C1224E40841006D3D7E /* LoginViewController.swift in Sources */,
 				E9672D6B24E3DDDD009C17BA /* AppDelegate.swift in Sources */,
 				E9F51C1D24E4138C006D3D7E /* UICustomStyle.swift in Sources */,
+				E9D8B8EE24E4F6FB006E18B0 /* ProfileViewController.swift in Sources */,
 				E9F51C1624E40CDC006D3D7E /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
