@@ -153,7 +153,10 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="person.2.fill" catalog="system"/>
+                                                <state key="normal" image="ellipses.bubble.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="ITq-pQ-ZyL" kind="presentation" modalPresentationStyle="fullScreen" id="p6B-Rg-rzy"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -203,6 +206,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQM-Bw-bXm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1291" y="1094"/>
+        </scene>
+        <!--Community-->
+        <scene sceneID="iyy-tO-JXi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Community" id="ITq-pQ-ZyL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TF5-6X-ZhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1538" y="1091"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zDu-FV-ZFg">
@@ -393,7 +404,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="ellipses.bubble.fill" catalog="system" width="128" height="110"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
     </resources>

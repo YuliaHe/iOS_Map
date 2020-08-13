@@ -15,6 +15,7 @@
 		E9672D7724E3DDDE009C17BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9672D7524E3DDDE009C17BA /* LaunchScreen.storyboard */; };
 		E9672D8224E3DDDE009C17BA /* Landmark_RemarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9672D8124E3DDDE009C17BA /* Landmark_RemarkTests.swift */; };
 		E9672D8D24E3E99B009C17BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9672D8C24E3E99B009C17BA /* GoogleService-Info.plist */; };
+		E9C1F53124E55E6200D5F0D6 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C1F53024E55E6200D5F0D6 /* Community.storyboard */; };
 		E9D8B8EB24E4F09B006E18B0 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */; };
 		E9D8B8EE24E4F6FB006E18B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8B8ED24E4F6FB006E18B0 /* ProfileViewController.swift */; };
 		E9D8B8F024E4F70F006E18B0 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8B8EF24E4F70F006E18B0 /* CommunityViewController.swift */; };
@@ -53,8 +54,8 @@
 		E9672D8124E3DDDE009C17BA /* Landmark_RemarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark_RemarkTests.swift; sourceTree = "<group>"; };
 		E9672D8324E3DDDF009C17BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9672D8C24E3E99B009C17BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9C1F53024E55E6200D5F0D6 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		E9D8B8EC24E4F0AF006E18B0 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Community.storyboard; path = "/Users/yulia_heee/Documents/Landmark_Remark/Landmark Remark/View/Community.storyboard"; sourceTree = "<absolute>"; };
 		E9D8B8ED24E4F6FB006E18B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E9D8B8EF24E4F70F006E18B0 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		E9F51C1124E40841006D3D7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -150,8 +151,8 @@
 		E9D8B8E924E4F07F006E18B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9C1F53024E55E6200D5F0D6 /* Community.storyboard */,
 				E9D8B8EA24E4F09B006E18B0 /* Profile.storyboard */,
-				E9D8B8EC24E4F0AF006E18B0 /* Community.storyboard */,
 				E9672D7524E3DDDE009C17BA /* LaunchScreen.storyboard */,
 				E9672D7024E3DDDD009C17BA /* Main.storyboard */,
 			);
@@ -273,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C1F53124E55E6200D5F0D6 /* Community.storyboard in Resources */,
 				E9672D7724E3DDDE009C17BA /* LaunchScreen.storyboard in Resources */,
 				E9672D8D24E3E99B009C17BA /* GoogleService-Info.plist in Resources */,
 				E9D8B8EB24E4F09B006E18B0 /* Profile.storyboard in Resources */,

@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/yulia_heee/Documents/Landmark_Remark/Landmark Remark/View/Community.storyboard">
-   </FileRef>
-   <FileRef
       location = "group:Landmark Remark.xcodeproj">
    </FileRef>
    <FileRef
