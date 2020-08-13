@@ -6,6 +6,11 @@ Technical Challenge from TigerSpike
 - Built storyboards and connect them.
 - Used Firestore to store user infomation.
 - Used Auth to implement basic signup/login function.
+
 12/08/2020 21:16 Check out.
 
 Duration: 111 mins.
+
+
+13/08/2020 10:58 Get started from mapkit! Fighting,Yulia!
+- Push all files to here.
