@@ -18,7 +18,7 @@ class UICustomStyle {
         
         bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width, height: 2)
         
-        bottomLine.backgroundColor = UIColor.systemTeal.cgColor
+        bottomLine.backgroundColor = UIColor.black.cgColor
         
         // Remove border on text field.
         textfield.borderStyle = .none

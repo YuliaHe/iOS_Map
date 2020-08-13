@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class InitialViewController: UIViewController {
 
@@ -16,7 +17,14 @@ class InitialViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Make navigation bar transparent.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     /*
     // MARK: - Navigation
 

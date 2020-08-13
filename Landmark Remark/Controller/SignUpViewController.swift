@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -49,7 +48,7 @@ class SignUpViewController: UIViewController {
                     // There was an error creating the user
                     self.showError("Error creating user")
                 } else {
-                    // User was created successfully, noew store the username into the data base.
+                    // User was created successfully, noew store the username into the database.
                     let db = Firestore.firestore()
                     
                     db.collection("users").addDocument(data: ["username": username, "uid": result!.user.uid]) { (error) in
@@ -93,7 +92,7 @@ class SignUpViewController: UIViewController {
         // Check if the password is secure
         let passwordStr = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if FormValidation.isPasswordValid(passwordStr) == false {
-            return "Your password must contain one capital letter, one number and and at least 8 char long."
+            return "At least 8 char long with 1 capital letter and 1 number."
         }
         
         return nil
@@ -107,6 +106,7 @@ class SignUpViewController: UIViewController {
     func goToHomePage() {
         let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
         
+        // Make it as key window.
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
