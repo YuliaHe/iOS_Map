@@ -13,6 +13,8 @@ import CoreLocation
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     var myLocationManager: CLLocationManager!
+    var currentLatitude: CLLocationDegrees!
+    var currentLongitude: CLLocationDegrees!
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -59,7 +61,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     // Get current location coordinates.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         guard let localValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        
+        currentLatitude = localValue.latitude
+        currentLongitude = localValue.longitude
         
         print("locations = \(localValue.latitude) \(localValue.longitude)")
     }

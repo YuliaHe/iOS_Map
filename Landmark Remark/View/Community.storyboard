@@ -32,13 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bN-BA-OGf">
-                                <rect key="frame" x="20" y="140" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XDx-aP-ylG">
-                                <rect key="frame" x="0.0" y="182" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="191" width="414" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="186" id="0SF-oe-HTZ">
@@ -122,16 +117,24 @@
                                     <outlet property="delegate" destination="pl8-53-ZD7" id="Oxd-by-Ah4"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" text="" placeholder="Search" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dxe-lF-sh0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="103"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Note</string>
+                                    <string>User</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="uHP-BS-mTh" firstAttribute="bottom" secondItem="XDx-aP-ylG" secondAttribute="bottom" constant="8" id="0WZ-4O-fmK"/>
-                            <constraint firstItem="8bN-BA-OGf" firstAttribute="leading" secondItem="uHP-BS-mTh" secondAttribute="leading" constant="20" id="1MJ-yT-Ctz"/>
+                            <constraint firstItem="XDx-aP-ylG" firstAttribute="top" secondItem="dxe-lF-sh0" secondAttribute="bottom" id="O2N-d0-RPk"/>
+                            <constraint firstItem="dxe-lF-sh0" firstAttribute="top" secondItem="uHP-BS-mTh" secondAttribute="top" id="OSp-ze-9LH"/>
+                            <constraint firstItem="dxe-lF-sh0" firstAttribute="leading" secondItem="uHP-BS-mTh" secondAttribute="leading" id="WXq-vx-OEF"/>
                             <constraint firstItem="XDx-aP-ylG" firstAttribute="leading" secondItem="uHP-BS-mTh" secondAttribute="leading" id="ak3-TN-eLY"/>
-                            <constraint firstItem="uHP-BS-mTh" firstAttribute="trailing" secondItem="8bN-BA-OGf" secondAttribute="trailing" constant="20" id="cIQ-gv-Lx5"/>
                             <constraint firstItem="uHP-BS-mTh" firstAttribute="trailing" secondItem="XDx-aP-ylG" secondAttribute="trailing" id="e5R-xm-CJV"/>
-                            <constraint firstItem="XDx-aP-ylG" firstAttribute="top" secondItem="8bN-BA-OGf" secondAttribute="bottom" constant="8" id="j6E-6h-PqR"/>
-                            <constraint firstItem="8bN-BA-OGf" firstAttribute="top" secondItem="uHP-BS-mTh" secondAttribute="top" id="ntr-dK-B0b"/>
+                            <constraint firstItem="dxe-lF-sh0" firstAttribute="trailing" secondItem="uHP-BS-mTh" secondAttribute="trailing" id="kAj-8L-44C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uHP-BS-mTh"/>
                     </view>
