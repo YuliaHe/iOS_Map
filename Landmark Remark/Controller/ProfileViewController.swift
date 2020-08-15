@@ -10,11 +10,20 @@ import UIKit
 import FirebaseAuth
 
 class ProfileViewController: UIViewController {
+    
+    var currentUser: User!
+    var personalNotes = [Note]()
 
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userEmailLabel: UILabel!
+    
+    @IBOutlet weak var amountOfNotesLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUI()
     }
     
     @IBAction func backTapped(_ sender: Any) {
@@ -40,6 +49,14 @@ class ProfileViewController: UIViewController {
 
         navigationController?.popToRootViewController(animated: true)
     }
+    
+    func setupUI() {
+        userNameLabel.text = currentUser.username
+        userEmailLabel.text = currentUser.email
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

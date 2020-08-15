@@ -17,25 +17,21 @@ class DataManager {
     let usersReference = Firestore.firestore().collection("users")
     let locationsReference = Firestore.firestore().collection("locations")
     let notesReference = Firestore.firestore().collection("notes")
+
     
     // MARK: User Session
     
     // Save user information into the database.
     // Return error message to print it on the error label if failed, else return nil.
-    func saveUserData(username: String, uid: String, email: String) -> String? {
-        
-        var errorInfo: String?
+    func saveUserData(username: String, uid: String, email: String) {
         
         let newUser = User(uid: uid, username: username, email: email)
         
         usersReference.addDocument(data: newUser.dictionary) { (error) in
             if error != nil {
-                errorInfo = "Error saving user data"
                 print("Error saving user data into the database: \(error!)")
             }
         }
-        
-        return errorInfo
     }
     
     

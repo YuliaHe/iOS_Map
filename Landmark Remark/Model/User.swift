@@ -32,7 +32,7 @@ extension User: DocumentationSerializable {
     init?(dictionary: [String : Any]) {
         guard let uid = dictionary["uid"] as? String,
             let username = dictionary["username"] as? String,
-            let email = dictionary["username"] as? String else {
+            let email = dictionary["email"] as? String else {
                 return nil
         }
         

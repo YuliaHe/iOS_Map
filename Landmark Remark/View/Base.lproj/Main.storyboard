@@ -146,7 +146,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="person.fill" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="b4x-Uw-F4c" kind="presentation" modalPresentationStyle="fullScreen" id="QDX-oU-nac"/>
+                                                    <action selector="goToProfileTapped:" destination="W5y-nh-x6o" eventType="touchUpInside" id="1q7-Yw-3wM"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAM-TY-vIX">
@@ -196,6 +196,7 @@
                     </view>
                     <connections>
                         <outlet property="myMapView" destination="gOE-9c-VUz" id="lld-Jw-a6V"/>
+                        <segue destination="b4x-Uw-F4c" kind="presentation" identifier="goToProfileVC" modalPresentationStyle="fullScreen" id="NE3-bo-Q6F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4k-q0-eZo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -208,7 +209,7 @@
                 <viewControllerPlaceholder storyboardName="Profile" id="b4x-Uw-F4c" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQM-Bw-bXm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1291" y="1094"/>
+            <point key="canvasLocation" x="1290" y="866"/>
         </scene>
         <!--Community-->
         <scene sceneID="iyy-tO-JXi">
@@ -216,7 +217,7 @@
                 <viewControllerPlaceholder storyboardName="Community" id="ITq-pQ-ZyL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TF5-6X-ZhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1538" y="1091"/>
+            <point key="canvasLocation" x="1474" y="866"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zDu-FV-ZFg">

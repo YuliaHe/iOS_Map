@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
-
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -51,8 +51,17 @@ class SignUpViewController: UIViewController {
                 } else {
                     
                     // User was created successfully, store the username and email into the database now.
-                    if let newUserStatus = DataManager.shared.saveUserData(username: username, uid: result!.user.uid, email: email) {
-                        self.showError(newUserStatus)
+                    let newUserStatus = DataManager.shared.saveUserData(username: username, uid: result!.user.uid, email: email)
+                    
+                    let userQuery = DataManager.shared.usersReference.whereField("email", isEqualTo: email)
+                    userQuery.getDocuments { (userSnapshot, err) in
+                        if let err = err {
+                            print("Error getting user: \(err)")
+                        } else {
+                            for userDoc in userSnapshot!.documents {
+                                UserDefaults.standard.set(userDoc.data(), forKey: "userKeepLoginStatus")
+                            }
+                        }
                     }
                     
                     // Transition to the home screen.

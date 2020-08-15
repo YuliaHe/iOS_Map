@@ -22,10 +22,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         setupLocationManager()
         setupMapView()
+        
+        let userInfoDictionary = UserDefaults.standard.dictionary(forKey: "userKeepLoginStatus")
+        currentUser = User(dictionary: userInfoDictionary!)
+        
     }
     
     @IBAction func createANoteTapped(_ sender: UIButton) {
@@ -43,12 +46,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let date = Date()
             let location = self.currentLocation
             
-            DataManager.shared.saveNoteData(content: content ?? "", date: Timestamp(date: date), location: location, userID: "Yulia")
+            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location, userID: self.currentUser.username)
             
             // 刷新map 在地图上新建一个大头针
         }))
         
         self.present(typingAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func goToProfileTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToProfileVC", sender: currentUser)
     }
     
     func setupLocationManager() {
@@ -98,14 +105,23 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // Get the profile view controller using segue.destination.
+        // Pass the current user to the profile
+        
+        if segue.identifier == "goToProfileVC" {
+            if let navVC = segue.destination as? UINavigationController {
+                
+                if let destinationVC = navVC.viewControllers[0] as? ProfileViewController {
+                    destinationVC.currentUser = sender as? User
+                }
+            }
+        }
     }
-    */
+    
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginViewController: UIViewController {
 
@@ -36,6 +37,18 @@ class LoginViewController: UIViewController {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             } else {
+                let userQuery = DataManager.shared.usersReference.whereField("email", isEqualTo: email)
+                userQuery.getDocuments { (userSnapshot, err) in
+                    if let err = err {
+                        print("Error getting user: \(err)")
+                    } else {
+                        for userDoc in userSnapshot!.documents {
+                            // Store info dictionary of current user logged in.
+                            UserDefaults.standard.set(userDoc.data(), forKey: "userKeepLoginStatus")
+                        }
+                    }
+                }
+                
                 self.goToHomePage()
             }
         }

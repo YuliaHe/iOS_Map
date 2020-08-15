@@ -157,6 +157,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="amountOfNotesLabel" destination="dQw-IK-5ec" id="ATY-hD-tNu"/>
+                        <outlet property="userEmailLabel" destination="2Je-Ju-w7N" id="NlC-6P-a1P"/>
+                        <outlet property="userNameLabel" destination="1h1-cS-Am6" id="bPv-Ef-vjY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6Z-mK-TXy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
