@@ -45,11 +45,10 @@ class LoginViewController: UIViewController {
                         for userDoc in userSnapshot!.documents {
                             // Store info dictionary of current user logged in.
                             UserDefaults.standard.set(userDoc.data(), forKey: "userKeepLoginStatus")
+                            self.goToHomePage()
                         }
                     }
                 }
-                
-                self.goToHomePage()
             }
         }
     }

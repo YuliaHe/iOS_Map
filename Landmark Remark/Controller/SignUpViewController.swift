@@ -60,12 +60,13 @@ class SignUpViewController: UIViewController {
                         } else {
                             for userDoc in userSnapshot!.documents {
                                 UserDefaults.standard.set(userDoc.data(), forKey: "userKeepLoginStatus")
+                                self.goToHomePage()
                             }
                         }
                     }
                     
-                    // Transition to the home screen.
-                    self.goToHomePage()
+//                    // Transition to the home screen.
+//                    self.goToHomePage()
                 }
             
             }

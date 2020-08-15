@@ -33,29 +33,37 @@ class DataManager {
             }
         }
     }
-    
+
     
     // MARK: Note Session
     
     // Save note into the database.
-    // Return true if saved successfully, false if failed.
-    func saveNoteData(content: String, date: Timestamp, location: GeoPoint, userID: String) -> Note? {
+    // Save note into the notes collection and users/personalNotes collection.
+    func saveNoteData(content: String, date: Timestamp, location: GeoPoint, userID: String, username: String) {
         
-        var ref: DocumentReference? = nil
-        
-        let newNote = Note(content: content, date: date, userID: userID, location: location)
-        
-        ref = notesReference.addDocument(data: newNote.dictionary) { error in
+        let newNote = Note(content: content, date: date, userID: userID, username: username, location: location)
+
+        var noteRef: DocumentReference? = nil
+        noteRef = notesReference.addDocument(data: newNote.dictionary) { error in
             if error != nil {
                 print("Error saving user data into the database: \(error!)")
             }
         }
+        let noteID = noteRef?.documentID
         
-        if ref != nil {
-            return newNote
-        } else {
-            return nil
+        // get user document. The owner of this note
+        let user = usersReference.whereField("uid", isEqualTo: userID)
+        user.getDocuments { (querySnapshot, error) in
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                for doc in querySnapshot!.documents {
+                    // store this notes into the user's notes collection.
+                    self.usersReference.document(doc.documentID).collection("personalNotes").addDocument(data: ["noteID" : noteID!])
+                }
+            }
         }
+        
     }
     
     

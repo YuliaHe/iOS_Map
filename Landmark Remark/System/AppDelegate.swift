@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Go to the homepage.
             let homeViewController = storyboard.instantiateViewController(identifier: "HomeVC") as? HomeViewController
             
-            print("userDefault: \(UserDefaults.standard.dictionary(forKey: "userKeepLoginStatus"))")
             let userInfoDictionary = UserDefaults.standard.dictionary(forKey: "userKeepLoginStatus")
             let currentUser = User(dictionary: userInfoDictionary!)
             homeViewController?.currentUser = currentUser

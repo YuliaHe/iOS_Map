@@ -13,6 +13,7 @@ struct Note {
     var content: String
     var date: Timestamp
     var userID: String
+    var username: String
     var location: GeoPoint
     
     var dictionary: [String: Any] {
@@ -20,7 +21,8 @@ struct Note {
             "content": content,
             "date": date,
             "userID": userID,
-            "location": location
+            "location": location,
+            "username": username
         ]
     }
 }
@@ -32,10 +34,11 @@ extension Note: DocumentationSerializable {
         guard let content = dictionary["content"] as? String,
             let date = dictionary["date"] as? Timestamp,
             let userID = dictionary["userID"] as? String,
-            let location = dictionary["location"] as? GeoPoint else {
+            let location = dictionary["location"] as? GeoPoint,
+            let username = dictionary["username"] as? String else {
                 return nil
         }
         
-        self.init(content: content, date: date, userID: userID, location: location)
+        self.init(content: content, date: date, userID: userID, username: username, location: location)
     }
 }

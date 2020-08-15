@@ -46,10 +46,10 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.noteContentTextView.text = currentNote.content
         cell.dateOfNoteLabel.text = dateFormatter.string(from: currentNote.date.dateValue())
         // TODO: 下面两个要把id string改成对应的名称.
-        cell.usernameButton.setTitle(currentNote.userID, for: .normal)
+        cell.usernameButton.setTitle(currentNote.username, for: .normal)
         
         let location = currentNote.location
-        cell.locationLabel.text = "[\(location.latitude)° N, \(location.longitude)° E]"
+        cell.locationLabel.text = "[\(location.latitude), \(location.longitude)]"
         
         return cell
     }

@@ -34,3 +34,10 @@ Duration: 104 mins.
 @15/08/2020 08:46 Working with Firestore data model.
 - Study Firestore
 - Build a data manager (helper)
+- More compulsory functions coming!
+
+
+15/08/2020 21:39 Check out.
+
+Duration: 112 mins Studying + 196 mins Developing = 308 mins.
+
