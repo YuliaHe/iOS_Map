@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		650A25C1A9FF1D22A6ED3B46 /* Pods_Landmark_RemarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22898F28F11AC196B7AA7CE /* Pods_Landmark_RemarkTests.framework */; };
 		9267503CD9893433F2E5BF4B /* Pods_Landmark_Remark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B67598692737E8AE034ADA /* Pods_Landmark_Remark.framework */; };
+		E95D049124E5FC990086F720 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D049024E5FC990086F720 /* DataManager.swift */; };
+		E95D049324E6B7C50086F720 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D049224E6B7C50086F720 /* User.swift */; };
+		E95D049724E6B7FC0086F720 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D049624E6B7FC0086F720 /* Location.swift */; };
+		E95D049B24E6C7340086F720 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D049A24E6C7340086F720 /* Protocol.swift */; };
+		E95D049F24E6CECB0086F720 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D049E24E6CECB0086F720 /* Note.swift */; };
+		E95D04A224E749D50086F720 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D04A124E749D50086F720 /* NoteTableViewCell.swift */; };
+		E95D051324E791070086F720 /* PersonalNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D051224E791070086F720 /* PersonalNoteTableViewCell.swift */; };
 		E9672D6B24E3DDDD009C17BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9672D6A24E3DDDD009C17BA /* AppDelegate.swift */; };
 		E9672D7224E3DDDD009C17BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9672D7024E3DDDD009C17BA /* Main.storyboard */; };
 		E9672D7424E3DDDE009C17BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9672D7324E3DDDE009C17BA /* Assets.xcassets */; };
@@ -44,6 +51,13 @@
 		47A7CDD3012C0F3B000FD824 /* Pods-Landmark RemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark RemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-Landmark RemarkTests/Pods-Landmark RemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DC7B7E41E8E986BD66ADAB1 /* Pods-Landmark RemarkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Landmark RemarkTests.release.xcconfig"; path = "Target Support Files/Pods-Landmark RemarkTests/Pods-Landmark RemarkTests.release.xcconfig"; sourceTree = "<group>"; };
 		C22898F28F11AC196B7AA7CE /* Pods_Landmark_RemarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Landmark_RemarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E95D049024E5FC990086F720 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E95D049224E6B7C50086F720 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E95D049624E6B7FC0086F720 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		E95D049A24E6C7340086F720 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		E95D049E24E6CECB0086F720 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		E95D04A124E749D50086F720 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		E95D051224E791070086F720 /* PersonalNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalNoteTableViewCell.swift; sourceTree = "<group>"; };
 		E9672D6724E3DDDD009C17BA /* Landmark Remark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Landmark Remark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9672D6A24E3DDDD009C17BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9672D7124E3DDDD009C17BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +120,26 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E95D048F24E5FC3C0086F720 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E95D049E24E6CECB0086F720 /* Note.swift */,
+				E95D049024E5FC990086F720 /* DataManager.swift */,
+				E95D049224E6B7C50086F720 /* User.swift */,
+				E95D049624E6B7FC0086F720 /* Location.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E95D04A024E749920086F720 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E95D04A124E749D50086F720 /* NoteTableViewCell.swift */,
+				E95D051224E791070086F720 /* PersonalNoteTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E9672D5E24E3DDDD009C17BA = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +163,7 @@
 		E9672D6924E3DDDD009C17BA /* Landmark Remark */ = {
 			isa = PBXGroup;
 			children = (
+				E95D048F24E5FC3C0086F720 /* Model */,
 				E9D8B8E924E4F07F006E18B0 /* View */,
 				E9F51C1924E412F7006D3D7E /* Utilities */,
 				E9F51C0924E4005C006D3D7E /* System */,
@@ -162,6 +197,7 @@
 		E9F51C0724E40007006D3D7E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E95D04A024E749920086F720 /* Cell */,
 				E9F51C1124E40841006D3D7E /* LoginViewController.swift */,
 				E9F51C1324E40850006D3D7E /* SignUpViewController.swift */,
 				E9F51C1524E40CDC006D3D7E /* InitialViewController.swift */,
@@ -186,6 +222,7 @@
 			children = (
 				E9F51C1A24E41332006D3D7E /* FormValidation.swift */,
 				E9F51C1C24E4138C006D3D7E /* UICustomStyle.swift */,
+				E95D049A24E6C7340086F720 /* Protocol.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -362,14 +399,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F51C1B24E41332006D3D7E /* FormValidation.swift in Sources */,
+				E95D049124E5FC990086F720 /* DataManager.swift in Sources */,
 				E9F51C1824E40CEC006D3D7E /* HomeViewController.swift in Sources */,
+				E95D049B24E6C7340086F720 /* Protocol.swift in Sources */,
 				E9D8B8F024E4F70F006E18B0 /* CommunityViewController.swift in Sources */,
 				E9F51C1424E40850006D3D7E /* SignUpViewController.swift in Sources */,
 				E9F51C1224E40841006D3D7E /* LoginViewController.swift in Sources */,
+				E95D051324E791070086F720 /* PersonalNoteTableViewCell.swift in Sources */,
+				E95D049724E6B7FC0086F720 /* Location.swift in Sources */,
+				E95D04A224E749D50086F720 /* NoteTableViewCell.swift in Sources */,
 				E9672D6B24E3DDDD009C17BA /* AppDelegate.swift in Sources */,
+				E95D049F24E6CECB0086F720 /* Note.swift in Sources */,
 				E9F51C1D24E4138C006D3D7E /* UICustomStyle.swift in Sources */,
 				E9D8B8EE24E4F6FB006E18B0 /* ProfileViewController.swift in Sources */,
 				E9F51C1624E40CDC006D3D7E /* InitialViewController.swift in Sources */,
+				E95D049324E6B7C50086F720 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,7 +30,6 @@ class SignUpViewController: UIViewController {
         let error = validateFields()
         
         if error != nil {
-            
             // Show error message on error label.
             showError(error!)
         } else {
@@ -47,22 +46,18 @@ class SignUpViewController: UIViewController {
                     
                     // There was an error creating the user
                     self.showError("Error creating user")
-                } else {
-                    // User was created successfully, noew store the username into the database.
-                    let db = Firestore.firestore()
+                    print("Error creating user, \(err)")
                     
-                    db.collection("users").addDocument(data: ["username": username, "uid": result!.user.uid]) { (error) in
-                        
-                        if error != nil {
-                            // Show error message
-                            self.showError("Error saving user data")
-                        }
+                } else {
+                    
+                    // User was created successfully, store the username and email into the database now.
+                    if let newUserStatus = DataManager.shared.saveUserData(username: username, uid: result!.user.uid, email: email) {
+                        self.showError(newUserStatus)
                     }
                     
                     // Transition to the home screen.
                     self.goToHomePage()
                 }
-            
             
             }
             

@@ -9,12 +9,14 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseFirestore
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
+    var currentUser: User!
+    var currentLocation = GeoPoint(latitude: 11.11, longitude: 12.23)
+    
     var myLocationManager: CLLocationManager!
-    var currentLatitude: CLLocationDegrees!
-    var currentLongitude: CLLocationDegrees!
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -24,6 +26,29 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         setupLocationManager()
         setupMapView()
+    }
+    
+    @IBAction func createANoteTapped(_ sender: UIButton) {
+        
+        let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at \(currentLocation.latitude)° N, \(currentLocation.longitude)° E", preferredStyle: .alert)
+        
+        typingAlert.addTextField { (noteTextField) in
+            noteTextField.placeholder = "Your note"
+        }
+        
+        typingAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        typingAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+            let content = typingAlert.textFields![0].text
+//            let username = self.currentUser.username // 要修改下面
+            let date = Date()
+            let location = self.currentLocation
+            
+            DataManager.shared.saveNoteData(content: content ?? "", date: Timestamp(date: date), location: location, userID: "Yulia")
+            
+            // 刷新map 在地图上新建一个大头针
+        }))
+        
+        self.present(typingAlert, animated: true, completion: nil)
     }
     
     func setupLocationManager() {
@@ -64,8 +89,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         
         guard let localValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
-        currentLatitude = localValue.latitude
-        currentLongitude = localValue.longitude
+        let currentLatitude = localValue.latitude
+        let currentLongitude = localValue.longitude
+        
+        currentLocation = GeoPoint(latitude: currentLatitude, longitude: currentLongitude)
         
         print("locations = \(localValue.latitude) \(localValue.longitude)")
     }
