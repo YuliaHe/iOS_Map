@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     var currentUser: User!
     var currentUserReference: DocumentReference!
     
-    var currentLocation = GeoPoint(latitude: 33.8568, longitude: 151.2153)
+    var currentLocation: GeoPoint!
     
     var allPersonalNotes = [Note]() // All notes created by current user.
     var allLocations = [Location]()

@@ -63,6 +63,8 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
                 for doc in querySnapshot!.documents {
                     let note = Note(dictionary: doc.data())
                     self.notesArray.append(note!)
+                    
+                    self.notesArray.sort(by:{$0.date.dateValue() > $1.date.dateValue()})
 
                     DispatchQueue.main.async {
                         self.allNotesTableView.reloadData()
