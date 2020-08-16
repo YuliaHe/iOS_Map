@@ -74,13 +74,35 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.noteContentTextView.text = currentNote.content
         cell.dateOfNoteLabel.text = dateFormatter.string(from: currentNote.date.dateValue())
-        // TODO: 下面两个要把id string改成对应的名称.
         cell.usernameButton.setTitle(currentNote.username, for: .normal)
         
         let location = currentNote.location
         cell.locationLabel.text = "[\(location.latitude), \(location.longitude)]"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentNote: Note
+        
+        if isFiltering {
+            currentNote = filteredNotesArray[indexPath.row]
+        } else {
+            currentNote = notesArray[indexPath.row]
+        }
+        
+        let userDoc = DataManager.shared.usersReference.whereField("uid", isEqualTo: currentNote.userID)
+
+        userDoc.getDocuments { (querySnapshot, error) in
+            if let err = error {
+                print("Error getting user documents: \(err)")
+            } else {
+                for doc in querySnapshot!.documents {
+                    let user = User(dictionary: doc.data())
+                    self.performSegue(withIdentifier: "goToOtherUserPage", sender: user)
+                }
+            }
+        }
     }
     
     // Filter notes based on searchText to match content of note and put the results in filteredNotes.
@@ -163,6 +185,17 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         searchController.searchBar.delegate = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the profile view controller using segue.destination.
+        // Pass the selected user to the profile
+        if segue.identifier == "goToOtherUserPage" {
+            if let destinationVC = segue.destination as? ProfileViewController {
+                destinationVC.currentUser = sender as? User
+            }
+        }
+        
+    }
 
 }
 

@@ -16,10 +16,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     var currentUser: User!
     var currentUserReference: DocumentReference!
     
-    var currentLocation: GeoPoint!
+    var currentLocation: GeoPoint = GeoPoint(latitude: -28.31, longitude: 153.02)
     
-    var allPersonalNotes = [Note]() // All notes created by current user.
-    var allLocations = [Location]()
+    var allNotes = [Note]() // All notes created by all users.
     
     var myLocationManager: CLLocationManager!
     
@@ -39,8 +38,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         let userInfoDictionary = UserDefaults.standard.dictionary(forKey: "userKeepLoginStatus")
         currentUser = User(dictionary: userInfoDictionary!)
         
-        // Know document id first.
-        fetchNotesOfCurrentUser()
+        loadAllNotesData()
+        checkForUpdatesInNote()
     }
     
     @IBAction func createANoteTapped(_ sender: UIButton) {
@@ -58,7 +57,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let date = Date()
             let location = self.currentLocation
             
-            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location!, userID: self.currentUser.uid, username: self.currentUser.username)
+            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location, userID: self.currentUser.uid, username: self.currentUser.username)
             
             // Add a annotation on the mao.
             let locationAnnotation = MKPointAnnotation()
@@ -66,7 +65,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let locationCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.latitude, longitude: self.currentLocation.longitude)
             locationAnnotation.coordinate = locationCoordinate
             
-            locationAnnotation.title = self.dateFormatter.string(from: date)
+            locationAnnotation.title = "\(self.currentUser.username), \(self.dateFormatter.string(from: date))"
             locationAnnotation.subtitle = content
             
             self.myMapView.addAnnotation(locationAnnotation)
@@ -95,55 +94,58 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     // Put annotations on the map for marking.
     func addAnnotationsOnMapView() {
         // Mark all location and the content of note.
-        for note in allPersonalNotes {
-            allLocations.append(Location(location: note.location))
+        for note in allNotes {
             
             let locationAnnotation = MKPointAnnotation()
             
             let locationCoordinate = CLLocationCoordinate2D(latitude: note.location.latitude, longitude: note.location.longitude)
             locationAnnotation.coordinate = locationCoordinate
             
-            locationAnnotation.title = dateFormatter.string(from: note.date.dateValue())
+            locationAnnotation.title = "\(note.username), \(dateFormatter.string(from: note.date.dateValue()))"
             locationAnnotation.subtitle = note.content
             
             self.myMapView.addAnnotation(locationAnnotation)
         }
     }
-    
-    // Get user document id and all noted by him.
-    fileprivate func fetchNotesOfCurrentUser() {
-        let userDoc = DataManager.shared.usersReference.whereField("uid", isEqualTo: currentUser.uid)
 
-        userDoc.getDocuments { (querySnapshot, error) in
+    func loadAllNotesData() {
+
+        DataManager.shared.notesReference.getDocuments() { querySnapshot, error in
             if let err = error {
-                print("Error getting user documents: \(err)")
+                print("\(err.localizedDescription)")
             } else {
                 for doc in querySnapshot!.documents {
-                    DataManager.shared.usersReference.document(doc.documentID).collection("personalNotes").getDocuments { (noteQuerySnapshot, error) in
-                        if let error = error {
-                            print("Error getting note documents: \(error)")
-                        } else {
-                            for noteDoc in noteQuerySnapshot!.documents {
-                                let noteDocID = Array(noteDoc.data().values)[0] as! String
-                                let noteRef = DataManager.shared.notesReference.document(noteDocID)
-                                
-                                noteRef.getDocument { (noteDocument, error) in
-                                    if let document = noteDocument, document.exists {
-                                        let note = Note(dictionary: document.data()!)
-                                        self.allPersonalNotes.append(note!)
-                                        self.addAnnotationsOnMapView()
-                                    } else {
-                                        print("Note does not exist")
-                                    }
-                                }
-                            }
-                        }
+                    let note = Note(dictionary: doc.data())
+                    self.allNotes.append(note!)
+
+                    DispatchQueue.main.async {
+                        self.addAnnotationsOnMapView()
                     }
                 }
             }
         }
     }
     
+    // Update after view loaded.
+    func checkForUpdatesInNote() {
+        
+        DataManager.shared.notesReference.whereField("date", isGreaterThan: Date())
+            .addSnapshotListener { (querySnapshot, error) in
+            
+                guard let snapshot = querySnapshot else {return}
+                
+                snapshot.documentChanges.forEach { diff in
+                    if diff.type == .added {
+                        let note = Note(dictionary: diff.document.data())
+                        self.allNotes.append(note!)
+
+                        DispatchQueue.main.async {
+                            self.addAnnotationsOnMapView()
+                        }
+                    }
+                }
+        }
+    }
     
     fileprivate func getUserAuthor() {
         switch CLLocationManager.authorizationStatus() {
@@ -199,3 +201,4 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 
 }
+

@@ -47,23 +47,23 @@
                                                     <rect key="frame" x="20" y="11" width="374" height="101"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Content of Note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L15-Fe-8AW">
-                                                            <rect key="frame" x="16" y="31" width="342" height="60"/>
+                                                            <rect key="frame" x="16" y="32" width="342" height="59"/>
                                                             <color key="backgroundColor" red="1" green="0.64592875144460771" blue="0.6040798030845147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="5hN-6T-Ci1"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="5hN-6T-Ci1"/>
                                                             </constraints>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIO-6G-w6e">
-                                                            <rect key="frame" x="258" y="9.5" width="33" height="18"/>
+                                                            <rect key="frame" x="258" y="10" width="33" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opU-kb-5yS">
-                                                            <rect key="frame" x="299" y="10" width="59" height="17"/>
+                                                            <rect key="frame" x="299" y="10" width="59" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>

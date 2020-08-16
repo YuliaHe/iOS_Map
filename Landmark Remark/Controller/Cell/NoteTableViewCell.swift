@@ -20,7 +20,4 @@ class NoteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var locationLabel: UILabel!
     
-    @IBAction func goToUserProfileTapped(_ sender: UIButton) {
-    }
-    
 }
