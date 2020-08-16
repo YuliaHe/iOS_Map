@@ -41,3 +41,16 @@ Duration: 104 mins.
 
 Duration: 112 mins Studying + 196 mins Developing = 308 mins.
 
+
+
+16/08/2020 09:12 Start from searching function.
+- Searching.
+- All basic functions done!
+
+16/08/2020 10:18 Check out! Have a good weekend!
+
+Duration: 66 mins
+
+
+
+17/08/2020 Work with documentation and test.

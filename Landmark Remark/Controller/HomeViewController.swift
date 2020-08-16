@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func createANoteTapped(_ sender: UIButton) {
         
-        let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at \(currentLocation.latitude)° N, \(currentLocation.longitude)° E", preferredStyle: .alert)
+        let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at [\(currentLocation.latitude), \(currentLocation.longitude)]", preferredStyle: .alert)
         
         typingAlert.addTextField { (noteTextField) in
             noteTextField.placeholder = "Your note"
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let date = Date()
             let location = self.currentLocation
             
-            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location, userID: self.currentUser.uid, username: self.currentUser.username)
+            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location!, userID: self.currentUser.uid, username: self.currentUser.username)
             
             // Add a annotation on the mao.
             let locationAnnotation = MKPointAnnotation()

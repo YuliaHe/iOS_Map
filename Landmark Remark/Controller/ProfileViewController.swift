@@ -95,22 +95,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Error getting user documents: \(err)")
             } else {
                 for doc in querySnapshot!.documents {
+                  
                     DataManager.shared.usersReference.document(doc.documentID).collection("personalNotes").getDocuments { (noteQuerySnapshot, error) in
                         if let error = error {
                             print("Error getting note documents: \(error)")
                         } else {
+                            
                             for noteDoc in noteQuerySnapshot!.documents {
                                 let noteDocID = Array(noteDoc.data().values)[0] as! String
                                 let noteRef = DataManager.shared.notesReference.document(noteDocID)
                                 
                                 noteRef.getDocument { (noteDocument, error) in
                                     if let document = noteDocument, document.exists {
+                                        
                                         let note = Note(dictionary: document.data()!)
                                         self.personalNotes.append(note!)
+                                        
+                                        self.personalNotes.sort(by:{$0.date.dateValue() > $1.date.dateValue()})
+                                        
                                         DispatchQueue.main.async {
                                             self.personalNotesTableView.reloadData()
                                         }
+                                        
                                         self.amountOfNotesLabel.text = "\(self.currentUser.username) has \(self.personalNotes.count) notes."
+                                        
                                     } else {
                                         print("Note does not exist")
                                     }

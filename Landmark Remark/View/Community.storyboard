@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XDx-aP-ylG">
-                                <rect key="frame" x="0.0" y="191" width="414" height="663"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" rowHeight="153" id="0SF-oe-HTZ" customClass="NoteTableViewCell" customModule="Landmark_Remark" customModuleProvider="target">
@@ -142,24 +142,13 @@
                                     <outlet property="delegate" destination="pl8-53-ZD7" id="Oxd-by-Ah4"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" text="" placeholder="Search" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dxe-lF-sh0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="103"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Note</string>
-                                    <string>User</string>
-                                </scopeButtonTitles>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="uHP-BS-mTh" firstAttribute="bottom" secondItem="XDx-aP-ylG" secondAttribute="bottom" constant="8" id="0WZ-4O-fmK"/>
-                            <constraint firstItem="XDx-aP-ylG" firstAttribute="top" secondItem="dxe-lF-sh0" secondAttribute="bottom" id="O2N-d0-RPk"/>
-                            <constraint firstItem="dxe-lF-sh0" firstAttribute="top" secondItem="uHP-BS-mTh" secondAttribute="top" id="OSp-ze-9LH"/>
-                            <constraint firstItem="dxe-lF-sh0" firstAttribute="leading" secondItem="uHP-BS-mTh" secondAttribute="leading" id="WXq-vx-OEF"/>
+                            <constraint firstItem="XDx-aP-ylG" firstAttribute="top" secondItem="uHP-BS-mTh" secondAttribute="top" id="IQv-qK-d1A"/>
                             <constraint firstItem="XDx-aP-ylG" firstAttribute="leading" secondItem="uHP-BS-mTh" secondAttribute="leading" id="ak3-TN-eLY"/>
                             <constraint firstItem="uHP-BS-mTh" firstAttribute="trailing" secondItem="XDx-aP-ylG" secondAttribute="trailing" id="e5R-xm-CJV"/>
-                            <constraint firstItem="dxe-lF-sh0" firstAttribute="trailing" secondItem="uHP-BS-mTh" secondAttribute="trailing" id="kAj-8L-44C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uHP-BS-mTh"/>
                     </view>
