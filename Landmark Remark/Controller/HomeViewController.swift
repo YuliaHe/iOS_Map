@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     var currentUser: User!
     var currentUserReference: DocumentReference!
     
-    var currentLocation: GeoPoint!
+    var currentLocation = GeoPoint(latitude: -28.45, longitude: 153.03)
     
     var allNotes = [Note]() // All notes created by all users.
     
@@ -44,34 +44,47 @@ class HomeViewController: UIViewController {
     
     @IBAction func createANoteTapped(_ sender: UIButton) {
         
-        let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at [\(currentLocation.latitude), \(currentLocation.longitude)]", preferredStyle: .alert)
+        let geoLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         
-        typingAlert.addTextField { (noteTextField) in
-            noteTextField.placeholder = "Your note"
+        CLGeocoder().reverseGeocodeLocation(geoLocation) { (placemarks, err) in
+            if err != nil {
+                print("reverse geocoding failed: \(err)")
+            } else {
+                if placemarks!.count > 0 {
+                    let pm = placemarks![0]
+                    
+                    let locationStr = pm.name ?? pm.thoroughfare
+                    let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at [\(locationStr!)]", preferredStyle: .alert)
+                    
+                    typingAlert.addTextField { (noteTextField) in
+                        noteTextField.placeholder = "Your note"
+                    }
+                    
+                    typingAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    typingAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+                        let content = typingAlert.textFields![0].text
+                        let date = Date()
+                        let location = self.currentLocation
+                        
+                        DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location, userID: self.currentUser.uid, username: self.currentUser.username)
+                        
+                        // Add a annotation on the mao.
+                        let locationAnnotation = MKPointAnnotation()
+                        
+                        let locationCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.latitude, longitude: self.currentLocation.longitude)
+                        locationAnnotation.coordinate = locationCoordinate
+                        
+                        locationAnnotation.title = "\(self.currentUser.username), \(self.dateFormatter.string(from: date))"
+                        locationAnnotation.subtitle = content
+                        
+                        self.myMapView.addAnnotation(locationAnnotation)
+                    }))
+                    
+                    self.present(typingAlert, animated: true, completion: nil)
+                }
+            }
         }
         
-        typingAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        typingAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
-            let content = typingAlert.textFields![0].text
-//            let username = self.currentUser.username // 要修改下面
-            let date = Date()
-            let location = self.currentLocation
-            
-            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location!, userID: self.currentUser.uid, username: self.currentUser.username)
-            
-            // Add a annotation on the mao.
-            let locationAnnotation = MKPointAnnotation()
-            
-            let locationCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.latitude, longitude: self.currentLocation.longitude)
-            locationAnnotation.coordinate = locationCoordinate
-            
-            locationAnnotation.title = "\(self.currentUser.username), \(self.dateFormatter.string(from: date))"
-            locationAnnotation.subtitle = content
-            
-            self.myMapView.addAnnotation(locationAnnotation)
-        }))
-        
-        self.present(typingAlert, animated: true, completion: nil)
     }
     
     @IBAction func goToProfileTapped(_ sender: UIButton) {
