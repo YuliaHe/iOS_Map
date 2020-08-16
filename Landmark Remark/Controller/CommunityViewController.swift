@@ -38,9 +38,8 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        loadData()
-        checkForUpdatesInNote()
+        loadData() // load all notes and display them
+        checkForUpdatesInNote() // Real-time updating
         
         setupSearchController()
     }

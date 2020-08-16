@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
                     let pm = placemarks![0]
                     
                     let locationStr = pm.name ?? pm.thoroughfare
-                    let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at [\(locationStr!)]", preferredStyle: .alert)
+                    let typingAlert = UIAlertController(title: "New Note", message: "Enter your note at \(locationStr!)", preferredStyle: .alert)
                     
                     typingAlert.addTextField { (noteTextField) in
                         noteTextField.placeholder = "Your note"

@@ -11,6 +11,7 @@ import UIKit
 
 class UICustomStyle {
     
+    // Customize textfield in the signup/login views.
     static func styleTextField(_ textfield: UITextField) {
         
         // Bottom line

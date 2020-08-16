@@ -13,9 +13,7 @@ class PersonalNoteTableViewCell: UITableViewCell {
     var currentNote: Note!
     
     @IBOutlet weak var noteContentTextView: UITextView!
-    
     @IBOutlet weak var dateOfNoteLabel: UILabel!
-    
     @IBOutlet weak var locationLabel: UILabel!
 
 }

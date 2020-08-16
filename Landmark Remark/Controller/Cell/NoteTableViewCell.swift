@@ -13,11 +13,8 @@ class NoteTableViewCell: UITableViewCell {
     var currentNote: Note!
 
     @IBOutlet weak var noteContentTextView: UITextView!
-    
     @IBOutlet weak var dateOfNoteLabel: UILabel!
-    
     @IBOutlet weak var usernameButton: UIButton!
-    
     @IBOutlet weak var locationLabel: UILabel!
     
 }

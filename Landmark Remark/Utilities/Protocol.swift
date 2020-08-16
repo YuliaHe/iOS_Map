@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Initialize struct.
+// Used to initialize struct.
 protocol DocumentationSerializable {
     init?(dictionary: [String:Any])
 }

@@ -108,6 +108,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             } else {
                 for doc in querySnapshot!.documents {
                   
+                    // After get user, get all notes created by this user.
                     DataManager.shared.usersReference.document(doc.documentID).collection("personalNotes").getDocuments { (noteQuerySnapshot, error) in
                         if let error = error {
                             print("Error getting note documents: \(error)")

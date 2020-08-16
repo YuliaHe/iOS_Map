@@ -63,6 +63,7 @@ class LoginViewController: UIViewController {
         UICustomStyle.styleTextField(passwordTextField)
     }
     
+    // Go to the home page.
     func goToHomePage() {
         let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
         

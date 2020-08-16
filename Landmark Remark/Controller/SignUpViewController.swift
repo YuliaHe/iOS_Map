@@ -64,13 +64,8 @@ class SignUpViewController: UIViewController {
                             }
                         }
                     }
-                    
-//                    // Transition to the home screen.
-//                    self.goToHomePage()
                 }
-            
             }
-            
         }
         
     }

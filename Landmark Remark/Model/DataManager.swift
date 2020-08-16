@@ -68,6 +68,7 @@ class DataManager {
     
     
     // MARK: Location Session
+    // This is future developing plan.
     
     // Save location into the database.
     func saveLocationData(latitude: Double, longitude: Double) {
