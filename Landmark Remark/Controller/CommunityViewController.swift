@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import CoreLocation
 
 class CommunityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -77,7 +78,18 @@ class CommunityViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.usernameButton.setTitle(currentNote.username, for: .normal)
         
         let location = currentNote.location
-        cell.locationLabel.text = "[\(location.latitude), \(location.longitude)]"
+        let geoLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(geoLocation) { (placemarks, err) in
+            if err != nil {
+                print("reverse geocoding failed: \(err)")
+            } else {
+                if placemarks!.count > 0 {
+                    let pm = placemarks![0]
+                    cell.locationLabel.text = pm.name ?? pm.thoroughfare
+                }
+            }
+        }
         
         return cell
     }

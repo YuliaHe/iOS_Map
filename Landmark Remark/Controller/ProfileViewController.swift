@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreLocation
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -75,7 +76,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.dateOfNoteLabel.text = dateFormatter.string(from: currentNote.date.dateValue())
         
         let location = currentNote.location
-        cell.locationLabel.text = "[\(location.latitude), \(location.longitude)]"
+        let geoLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(geoLocation) { (placemarks, err) in
+            if err != nil {
+                print("reverse geocoding failed: \(err)")
+            } else {
+                if placemarks!.count > 0 {
+                    let pm = placemarks![0]
+                    cell.locationLabel.text = pm.name ?? pm.thoroughfare
+                }
+            }
+        }
         
         return cell
     }

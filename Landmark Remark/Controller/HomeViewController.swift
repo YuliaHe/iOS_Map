@@ -11,12 +11,12 @@ import MapKit
 import CoreLocation
 import FirebaseFirestore
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
+class HomeViewController: UIViewController {
     
     var currentUser: User!
     var currentUserReference: DocumentReference!
     
-    var currentLocation: GeoPoint = GeoPoint(latitude: -28.31, longitude: 153.02)
+    var currentLocation: GeoPoint!
     
     var allNotes = [Note]() // All notes created by all users.
     
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let date = Date()
             let location = self.currentLocation
             
-            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location, userID: self.currentUser.uid, username: self.currentUser.username)
+            DataManager.shared.saveNoteData(content: content ?? "Just marked it.", date: Timestamp(date: date), location: location!, userID: self.currentUser.uid, username: self.currentUser.username)
             
             // Add a annotation on the mao.
             let locationAnnotation = MKPointAnnotation()
@@ -80,9 +80,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     // Set up map view and its manager.
     func setupLocationManager() {
+        
         myMapView.userTrackingMode = .followWithHeading
         
         myLocationManager = CLLocationManager()
+        myLocationManager.delegate = self
         // Update location when moving one meter.
         myLocationManager.distanceFilter = 1
         // Set accuracy (better accuracy is more battery consuming)
@@ -91,23 +93,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         getUserAuthor()
     }
     
-    // Put annotations on the map for marking.
-    func addAnnotationsOnMapView() {
-        // Mark all location and the content of note.
-        for note in allNotes {
-            
-            let locationAnnotation = MKPointAnnotation()
-            
-            let locationCoordinate = CLLocationCoordinate2D(latitude: note.location.latitude, longitude: note.location.longitude)
-            locationAnnotation.coordinate = locationCoordinate
-            
-            locationAnnotation.title = "\(note.username), \(dateFormatter.string(from: note.date.dateValue()))"
-            locationAnnotation.subtitle = note.content
-            
-            self.myMapView.addAnnotation(locationAnnotation)
-        }
-    }
-
     func loadAllNotesData() {
 
         DataManager.shared.notesReference.getDocuments() { querySnapshot, error in
@@ -147,6 +132,23 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Put annotations on the map for marking.
+    func addAnnotationsOnMapView() {
+        // Mark all location and the content of note.
+        for note in allNotes {
+            
+            let locationAnnotation = MKPointAnnotation()
+            
+            let locationCoordinate = CLLocationCoordinate2D(latitude: note.location.latitude, longitude: note.location.longitude)
+            locationAnnotation.coordinate = locationCoordinate
+            
+            locationAnnotation.title = "\(note.username), \(dateFormatter.string(from: note.date.dateValue()))"
+            locationAnnotation.subtitle = note.content
+            
+            self.myMapView.addAnnotation(locationAnnotation)
+        }
+    }
+
     fileprivate func getUserAuthor() {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
@@ -166,21 +168,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-    // Get current location coordinates.
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let localValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        
-        let currentLatitude = localValue.latitude
-        let currentLongitude = localValue.longitude
-        
-        currentLocation = GeoPoint(latitude: currentLatitude, longitude: currentLongitude)
-        
-        print("locations = \(localValue.latitude) \(localValue.longitude)")
-    }
-    
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -199,6 +186,21 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-
 }
+
+
+extension HomeViewController: CLLocationManagerDelegate {
+    
+    // Get current location coordinates.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let localValue: CLLocation = locations[0] as CLLocation
+        
+        let currentLatitude = localValue.coordinate.latitude
+        let currentLongitude = localValue.coordinate.longitude
+        
+        currentLocation = GeoPoint(latitude: currentLatitude, longitude: currentLongitude)
+    }
+}
+
 
