@@ -4,24 +4,50 @@ By: Yulia He
 Technical Challenge from TigerSpike.
 
 
-# Proposal
 
-## Objective
+## Introduction
 
-This app allows users to save short notes based on location on a map. Every note will be displayed on the map and viewed by any user. User also can have a look at other users' notes list in user profile. A search function provided for searching the notes with specific content or username.
+This app allows users to save short notes based on location on a map. Every location will be displayed on the map,  and every note will be listed in "Communiy". They can be viewed by any user. User also can have a look at his own notes list or other users' notes lists in user "Profile". A search function provided for searching the notes with specific content or username.
 
-## Outline Of My Approach
+
+
+## Outline
 
 ### Architecture
-MVC model
+Model-View-Controller framework (MVC)
+
+##### Model
+* `User.swift` <\br>
+* `Note.swift` <\br>
+* `Location.swift` <\br>
+With a `DataManager.swift` to manager data model. It can help me store the data into the database effectively.
+
+##### View
+* `Main.storyboard` - including user login/signup view to authenticate user information and homepage to show the map view. In the homepage, there are three entries to access three functionalities, which are saving a note, profile to browse user's own notes, and community to check all notes post by all users. <\br>
+* `Community.storyboard` - List all notes created by all users. <\br>
+* `Profile.storyboard` - List all notes creates by some specific user with his personal infomation. <\br>
+* `LaunchScreen.storyboard` - View when launch the app. <\br>
+
+##### Controller
+These controllers are used to `transfer data between database and views`. For instance, all information displayed on the `View` are fetched from database by `Controller`, and all data `model` get from view, such as content typing in the textfield, are stored in the database by `Controller` either.
 
 ### Backend
-Firebase
+[Firebase](https://firebase.google.com/docs)
+
+Add `GoogleService-Info.plist` configuration file to connect firebase and my project.
+To add Firebase SDKs, `CocoaPods` assists me install and Firebase libraries.
+
+For database, `Firestore` is used here. 
+> It is a flexible, scalable NoSQL database for mobile, web, and server development from Firebase and Google Cloud Platform. [more](https://firebase.google.com/docs/firestore)
+
+It's easy to be initialized. After configure the Firebase ```FirebaseApp.configure()``` in the `AppDelegate.swift` and install Firestore using pod ```pod 'Firebase/Firestore'```. You just need to import `FirebaseFirestore` and ```let db = Firestore.firestore()```.
+
 
 ### Data Structure
 
-Each user has its own username, uid (generated when new account created), and email. </br>
-There's also a set named personalNotes to store all notes created by this user.
+###### There are three data models(classes), `user`, `note` and `location`. Only the first two are implemented in this test. `location` will be my future plan to make more extra advanced functions.
+
+Each user has its own username, uid (generated when new account created), and email. There's also a set named personalNotes to store all notes created by this user.
 
 > User
 >> username: String </br>
@@ -30,8 +56,7 @@ There's also a set named personalNotes to store all notes created by this user.
 >> personalNotes: [Note]
 >>> noteID: String -> Refer to NoteDocument.documentID
 
-Each note has the content, created date, coordinates. </br>
-And store userID and username to get who post this note.
+Each note has the content, created date, coordinates. And store userID and username to get who post this note.
 
 > Note
 >> content: String </br>
@@ -53,27 +78,63 @@ Future Implement: Each location has its coordinates. Then store all users whom m
 >> users: [User] </br>
 >>> userID: String -> Refer to UserDocument.documentID </br>
 
+
 ### Functionalities & Technology
 
 #### Required functionalities 
-* Show current location on a map
-* Save a short note at the current location
-* Personal notes list
-* See other users' notes
-    Show all locations on the map once if there is a note.
-    Show the lastest note if there are many notes at the same location.
-* Search
+
+- Show current location on a map
+    * Set a map view by `Mapkit`. <\br>
+    * Get user athoration first.
+        * ```fileprivate func getUserAuthor()``` in `HomeViewController.swift`.
+    * Get real-time location by `CoreLocation`.
+        * ```func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])``` in `HomeViewController.swift`.
+    * All locations are displayed on the map.    
+        * Show all locations on the map as long as there is a note created at this location.
+            * ```func loadAllNotesData()``` in `HomeViewController.swift`.
+        * Click the annotation to look at the details of this note.
+        * Real-time update.
+            * ```func checkForUpdatesInNote()``` in `HomeViewController.swift`.
+    
+- Save a short note at the current location
+    * Save note data into the databse with its content, created date, location, and user infomation on who post this note.
+        * ```@IBAction func createANoteTapped(_ sender: UIButton)``` in `HomeViewController.swift`.
+    * After saving a note, an annotation will be set on the map as a mark.
+        * ```func addAnnotationsOnMapView()``` in `HomeViewController.swift`.
+    
+- Profile: Browse user's information and his notes.
+    * `Profile` view allows user to check all his own notes.
+        * ```private func fetchNotesOfCurrentUser()``` is used to fetch all notes which are created by current user.
+    * `Profile` also shows the user's username and email. `email` is unique key for each user. The amount of notes belong to the current user are counted here.
+    * User also can access other users' profile by selecting the tableview cell in the `Community`.
+
+- Community: See all users' real-time notes.
+    * Display all notes from all users as a list ordered according to the created time of each note.
+        * ```func loadData()```
+    * Real-time update.
+        * ```func checkForUpdatesInNote()```
+    * User can access other user's profile by selecting the cell.
+        * ```func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)```
+    
+- Search with two scopes at `Community` page.
+    * Search by content of note.
+    * Search by username.
 
 #### Extra advanced functionalities
-* User authenticate
-* Keep login
+- User authenticate
+    * As a user-based app, signup/login function is necessary.
+    * `FirebaseAuth` library gives me a support.
+    * Password must be at least 8 char with 1 number and 1 BLOCK LETTER.
+- Keep login status
+    * Use `UserDefault` to store the user logged in. Then everytime he opens the app, it would be the homepage unless he sign out from the his own profile page.
 
 
-## Timeline of Development
+
+## Timeline
 Journal of my development.
 
-### This app cost 619 minutes totally (about 10 hours).
-#### 112 mins study + 477 mins development + 30 mins documentation making.
+### This app cost 628 minutes totally (about 10.5 hours).
+#### 112 mins study + 475 mins development and test + 41 mins documentation making.
 
 #### 12/08/2020 18:25 Get started from connecting Firebase!
 
@@ -83,7 +144,6 @@ Journal of my development.
 
 21:16 Check out.
 ##### Duration: 111 mins.
-
 
 #### 13/08/2020 10:58 Get started from mapkit! Fighting,Yulia!
 
@@ -95,18 +155,16 @@ Journal of my development.
 13:42 Check out.
 ##### Duration: 104 mins.
 
-
 #### 14/08/2020 Happy Ekka Holiday!
 
 #### 15/08/2020 08:46 Working with Firestore data model.
 
 * Study Firestore (112 mins)
-* Build a data manager as a helper and work with data (196 mins)
+* Build a data manager as a helper and work with data (186 mins)
 * More compulsory functions coming!
 
 21:39 Check out.
-##### Duration: 112 mins Studying + 196 mins Developing&Test = 308 mins.
-
+##### Duration: 112 mins Studying + 186 mins Developing&Test = 298 mins.
 
 #### 16/08/2020 09:12 Start from searching function.
 
@@ -117,36 +175,47 @@ Journal of my development.
 16:28 Check out
 ##### Duration: 86 mins
 
+#### 17/08/2020 09:34 Work with documentation and test.
 
-#### 17/08/2020 Work with documentation and test.
+* Documentation (17 mins)
+* Real app test (12 mins)
+* Submit it! Yeah!
 
-* Documentation
-* Test and fix bugs
-
-
-
+15:00 Check out
+##### Duration: 29 mins
 
 
 
 ## Issues/Limitations
 
-* error label
-
-* loading
-
-* only show the lastest note if there are notes at the same location.
-
-* indicator
-loading, filtering...
-
-* tranfer coordinates to name
-
-* UI design
-
-* Security
+* The text of error label is not regulated. I just returned the error information from the system and printed it on the label. Sometimes it's not readable by user. It could be printed readable if I do some adjustments.
+* Loading the map and notes list will spent on ~1s. 
+* Only one note shown if there are notes at the same location now. It will be a list as my future plan indicates.
+* In `Community`, the search bar will disappear after scrolling the tableview. User have to back to the homepage and re-entry community page to use search function. I got no idea about this.
 
 
 
-## Future Development
+## Future Development / Improvement
 
-#### Location Class Implement
+##### Location Class Implement
+Then the data model will be more stable and flexible. There will be more interesting and usable. There will be more statistics. User can know how many users have been here and how many notes are saved at here can be count. User can know the amount of same locations that both of user himself and another specific user visited.... It would be more fun to make this app be like a social app.
+<\br><\br>
+And the name of location will be more precise. i just got ```Placemark.name``` at current version.
+
+##### Indicator
+To make this app more usable, I will create some views to show the loading status, or the result of filter when searching...
+
+##### A note list for each location on the map.
+As I mentioned above, there's only one note shown at a location. In the future, I will implement a tableview to show all notes at a specific location. This list is present when user click the annotation
+
+##### Email Verificaton
+Because email is the unique key of a user currently, repeated username is acceptable now. To ensure the security, I will add a email verification to check user. 
+
+##### Hide my notes / Anonymous
+Some users would like not to show their notes to other users. It will be an option to ensure the privacy. It's easy to be implemented. Just add a Bool attribute into the data model. 
+
+##### More pretty UI
+It would be better!
+
+##### More constraints
+Such as the content of note can not be empty, etc..
