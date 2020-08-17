@@ -10,6 +10,13 @@ Technical Challenge from TigerSpike.
 This app allows users to save short notes based on location on a map. Every location will be displayed on the map,  and every note will be listed in "Community". They can be viewed by any user. User also can have a look at his own notes list or other users' notes lists in user "Profile". A search function provided for searching the notes with specific content or username.
 
 
+## For Tester
+* Please open the `Landmark Remark.xcworkspace` to run this app.
+
+* You have to go `Debug -> Simulate Location`  to give Simulator a default location manually, as running with Simulator cannot get current location automatically.
+
+* You may login by the account with email `test@gmail.com` and password `Abc12345`. You can also create your own account.
+
 
 ## Outline
 
