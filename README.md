@@ -225,7 +225,7 @@ Journal of my development.
 * Real app test (12 mins)
 * Submit it! Yeah!
 
-15:00 Check out
+13:25 Check out
 ##### Duration: 29 mins
 </br></br>
 
