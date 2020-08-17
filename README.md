@@ -62,8 +62,9 @@ You just need to import `FirebaseFirestore` and
 ``` swift
 let db = Firestore.firestore()
 ```
-
 </br>
+
+
 ### Data Structure
 
 ###### There are three data models(classes), `user`, `note` and `location`. Only the first two are implemented in this test. `Location` will be my future plan to make more extra advanced functions.
@@ -98,8 +99,9 @@ Future Implement: Each location has its coordinates. Then store all users whom m
 
 >> users: [User] </br>
 >>> userID: String -> Refer to UserDocument.documentID </br>
-
 </br>
+
+
 ### Functionalities & Technology
 
 #### Required functionalities 
