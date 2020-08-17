@@ -34,12 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let homeViewController = storyboard.instantiateViewController(identifier: "HomeVC") as? HomeViewController
             
             let userInfoDictionary = UserDefaults.standard.dictionary(forKey: "userKeepLoginStatus")
-            let currentUser = User(dictionary: userInfoDictionary!)
-            homeViewController?.currentUser = currentUser
             
-            // Make it as key window.
-            window?.rootViewController = homeViewController
-            window?.makeKeyAndVisible()
+            if userInfoDictionary != nil {
+                let currentUser = User(dictionary: userInfoDictionary!)
+                homeViewController?.currentUser = currentUser
+            
+                // Make it as key window.
+                window?.rootViewController = homeViewController
+                window?.makeKeyAndVisible()
+            } else {
+                // Go to the initial page.
+                let initialViewController = storyboard.instantiateViewController(identifier: "InitialVC") as? InitialViewController
+                
+                // Make it as key window.
+                window?.rootViewController = initialViewController
+                window?.makeKeyAndVisible()
+            }
             
         } else {
             
