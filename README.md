@@ -24,16 +24,17 @@ This app allows users to save short notes based on location on a map. Every loca
 Model-View-Controller framework (MVC)
 
 ##### Model
-* `User.swift` <\br>
-* `Note.swift` <\br>
-* `Location.swift` <\br>
+* `User.swift` 
+* `Note.swift` 
+* `Location.swift`
+
 With a `DataManager.swift` to manager data model. It can help me store the data into the database effectively.
 
 ##### View
-* `Main.storyboard` - including user login/signup view to authenticating user information and homepage to show the map view. In the homepage, there are three entries to access three functionalities, which are saving a note, profile to browse the user's own notes, and community to check all notes post by all users. <\br>
-* `Community.storyboard` - List all notes created by all users. <\br>
-* `Profile.storyboard` - List all notes creates by some specific user with his personal information. <\br>
-* `LaunchScreen.storyboard` - View when launching the app. <\br>
+* `Main.storyboard` - including user login/signup view to authenticating user information and homepage to show the map view. In the homepage, there are three entries to access three functionalities, which are saving a note, profile to browse the user's own notes, and community to check all notes post by all users. 
+* `Community.storyboard` - List all notes created by all users. 
+* `Profile.storyboard` - List all notes creates by some specific user with his personal information.
+* `LaunchScreen.storyboard` - View when launching the app.
 
 ##### Controller
 These controllers are used to `transfer data between database and views`. For instance, all information displayed on the `View` are fetched from database by `Controller`, and all data `model` get from view, such as content typing in the textfield, are stored in the database by `Controller` either.
@@ -91,7 +92,7 @@ Future Implement: Each location has its coordinates. Then store all users whom m
 #### Required functionalities 
 
 - Show current location on a map
-    * Set a map view by `Mapkit`. <\br>
+    * Set a map view by `Mapkit`.
     * Get user authorisation first.
         * ```fileprivate func getUserAuthor()``` in `HomeViewController.swift`.
     * Get real-time location by `CoreLocation`.
@@ -206,7 +207,7 @@ Journal of my development.
 
 ##### Location Class Implement
 Then the data model will be more stable and flexible. There will be more interesting and usable. There will be more statistics. User can know how many users have been here and how many notes are saved at here can be count. User can know the number of same locations that both of user himself and another specific user visited.... It would be more fun to make this app be like a social app.
-<\br><\br>
+
 And these names of locations will be more precise. i just got ```Placemark.name``` at current version.
 
 ##### Indicator
